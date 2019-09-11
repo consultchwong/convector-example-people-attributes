@@ -6,7 +6,7 @@
     "dist/*"
   ],
   "scripts": {
-    "start": "npm run env:restart && npm run cc:start -- person",
+    "start": "npx lerna run start --scope server --stream",
     "forma:seed:enroll": "lerna run seed:enroll --scope administrative --stream",
     "forma:seed:data": "lerna run seed:data --scope administrative --stream",
     "seed": "./seed.sh",
