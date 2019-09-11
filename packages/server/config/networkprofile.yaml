@@ -1,0 +1,282 @@
+name: chwongfxc-devnetpqn
+version: "1.0"
+
+client:
+  organization: chwongfxc-devnetpqn
+
+  # If you have an MSP folder, update this path.
+  # Otherwise, leave it as it is
+  # The msp folder contains multiple folders,
+  # two of those are keystore and signcerts
+  credentialStore:
+    path: ./config
+    cryptoStore:
+      path: ./config
+
+channels:
+  public:
+    orderers: 
+      - orderer2.chwongfxc-devnetpqn.svc.cluster.local
+    
+      - orderer2.govfmq-devnetlha.svc.cluster.local
+    
+    peers:
+      peer1.chwongfxc-devnetpqn.svc.cluster.local:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.govfmq-devnetlha.svc.cluster.local:
+        endorsingPeer: true
+        chaincodeQuery: false
+        ledgerQuery: false
+        eventSource: false
+
+organizations:
+  chwongfxc-devnetpqn:
+    mspid: chwongfxc-devnetpqnMSP
+    peers: 
+      - peer1.chwongfxc-devnetpqn.svc.cluster.local
+    certificateAuthorities:
+      - ica.chwongfxc-devnetpqn.svc.cluster.local
+  govfmq-devnetlha:
+    mspid: govfmq-devnetlhaMSP
+    peers: 
+      - peer1.govfmq-devnetlha.svc.cluster.local
+    certificateAuthorities:
+      - ica.govfmq-devnetlha.svc.cluster.local
+
+orderers: 
+  orderer2.chwongfxc-devnetpqn.svc.cluster.local:
+    url: grpcs://078667561026-eks-prod-001.worldsibu.com:31367
+    grpcOptions:
+      ssl-target-name-override: orderer2.chwongfxc-devnetpqn.svc.cluster.local
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICXTCCAgSgAwIBAgIUBokQChWhd1i3Az9lsPjcC2KIXFswCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMjQwOTA0MDc1NzAwWjB0MQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9y
+        dGggQ2Fyb2xpbmExFDASBgNVBAoTC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZjbGll
+        bnQxJTAjBgNVBAMTHGNod29uZ2Z4Yy1kZXZuZXRwcW4tUkNBYWRtaW4wWTATBgcq
+        hkjOPQIBBggqhkjOPQMBBwNCAAQAk9eeDSdAbSwRRcyRBY2eNG1eeqAkNyiV+vGx
+        trHYfKbx6GDL0zkUO4Dmi95Nih9YepnEXaSNPQjpwCxtAbALo2YwZDAOBgNVHQ8B
+        Af8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUqTPXaOE76ln5
+        QPm2YOKzY+sjVDcwHwYDVR0jBBgwFoAUDYov1sDEkdQiIVdsw4/Zb17fHzMwCgYI
+        KoZIzj0EAwIDRwAwRAIgU38MpNd2j8QyrU+CgiY1rPlzOSsKABg8awiTgCXqM8YC
+        IGV51XiU8MF3E441EyaY+sofM12r7Af0mOtX1/svX9vo
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIUIKmFFE64TSHyc4YA2sB9MHwWBEMwCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMzQwOTAyMDc1MjAwWjCBgTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5v
+        cnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFi
+        cmljMTIwMAYDVQQDEylyY2EuY2h3b25nZnhjLWRldm5ldHBxbi5zdmMuY2x1c3Rl
+        ci5sb2NhbDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNABpEhmfW/X2U0XQib0
+        2Zlc69fP5asaN3My8fnVXnImZ6kF1ftLI55gfkRWIba2jkNJwmjQSwNe9kuLjnEE
+        DoijRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEBMB0GA1Ud
+        DgQWBBQNii/WwMSR1CIhV2zDj9lvXt8fMzAKBggqhkjOPQQDAgNIADBFAiEAyGwC
+        DxFX+GYMLhyknLrW/BokJsKqhB7z/IWSQtRoda0CIDd8IgqsQBdnbnbTfMou2BL5
+        2XpOQ0bDJvWVjFWvUYhe
+        -----END CERTIFICATE-----
+        
+
+  orderer2.govfmq-devnetlha.svc.cluster.local:
+    url: grpcs://078667561026-eks-prod-001.worldsibu.com:30782
+    grpcOptions:
+      ssl-target-name-override: orderer2.govfmq-devnetlha.svc.cluster.local
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVzCCAf2gAwIBAgIUasJRqGdF3TQjf1mOzb61Z2Nso8UwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzU0MDBa
+        Fw0yNDA5MDQwNzU5MDBaMHExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBmNsaWVudDEi
+        MCAGA1UEAxMZZ292Zm1xLWRldm5ldGxoYS1SQ0FhZG1pbjBZMBMGByqGSM49AgEG
+        CCqGSM49AwEHA0IABKFS3orXxefq4nfw1ox+Qsh65kXAeu3F0uhPu0KRZihdf9uX
+        PqItS9Qxxcm10Gg+AyjfRZdjyrPgHSQv1siHBb+jZjBkMA4GA1UdDwEB/wQEAwIB
+        BjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBRqFkheJMOhlS5v0DwzeWnb
+        lAcCmDAfBgNVHSMEGDAWgBSUTUDZjNazFLaP09Ge1OdZSqV2AzAKBggqhkjOPQQD
+        AgNIADBFAiEAi/D0wKLFuRI26n+ydjN62sR8hpr9QzG4h6eHgdWFzMYCIAefBCHC
+        8tjlzT+a9XUz1jt1utwFXrlIcVJ9azkht4Qb
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICQjCCAemgAwIBAgIUaY+AUVe2LlynLl8AR6sLAP/kFXUwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzUzMDBa
+        Fw0zNDA5MDIwNzUzMDBaMH4xCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEv
+        MC0GA1UEAxMmcmNhLmdvdmZtcS1kZXZuZXRsaGEuc3ZjLmNsdXN0ZXIubG9jYWww
+        WTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATXzNo/4VEqrWE+aYtnxjhLP1lgUGKL
+        p8EvzLYH0p066zQtaOQiRhDqFjhKgaVmWWkVErf0uP8VIyNUhnTpgweto0UwQzAO
+        BgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUlE1A
+        2YzWsxS2j9PRntTnWUqldgMwCgYIKoZIzj0EAwIDRwAwRAIgL0zU3Lvqhu21DwAH
+        Olgoh4YtViQtL6hCGuEEnvRzwyQCIEb4kJqit1IUjasmbTjKOOh8emS2FqEsmnvZ
+        dYk7/QA9
+        -----END CERTIFICATE-----
+        
+
+
+peers:
+  peer1.chwongfxc-devnetpqn.svc.cluster.local:
+    url: grpcs://078667561026-eks-prod-001.worldsibu.com:30917
+    eventUrl: grpcs://078667561026-eks-prod-001.worldsibu.com:30559
+    grpcOptions:
+      ssl-target-name-override: peer1.chwongfxc-devnetpqn.svc.cluster.local
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICXTCCAgSgAwIBAgIUBokQChWhd1i3Az9lsPjcC2KIXFswCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMjQwOTA0MDc1NzAwWjB0MQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9y
+        dGggQ2Fyb2xpbmExFDASBgNVBAoTC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZjbGll
+        bnQxJTAjBgNVBAMTHGNod29uZ2Z4Yy1kZXZuZXRwcW4tUkNBYWRtaW4wWTATBgcq
+        hkjOPQIBBggqhkjOPQMBBwNCAAQAk9eeDSdAbSwRRcyRBY2eNG1eeqAkNyiV+vGx
+        trHYfKbx6GDL0zkUO4Dmi95Nih9YepnEXaSNPQjpwCxtAbALo2YwZDAOBgNVHQ8B
+        Af8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUqTPXaOE76ln5
+        QPm2YOKzY+sjVDcwHwYDVR0jBBgwFoAUDYov1sDEkdQiIVdsw4/Zb17fHzMwCgYI
+        KoZIzj0EAwIDRwAwRAIgU38MpNd2j8QyrU+CgiY1rPlzOSsKABg8awiTgCXqM8YC
+        IGV51XiU8MF3E441EyaY+sofM12r7Af0mOtX1/svX9vo
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIUIKmFFE64TSHyc4YA2sB9MHwWBEMwCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMzQwOTAyMDc1MjAwWjCBgTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5v
+        cnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFi
+        cmljMTIwMAYDVQQDEylyY2EuY2h3b25nZnhjLWRldm5ldHBxbi5zdmMuY2x1c3Rl
+        ci5sb2NhbDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNABpEhmfW/X2U0XQib0
+        2Zlc69fP5asaN3My8fnVXnImZ6kF1ftLI55gfkRWIba2jkNJwmjQSwNe9kuLjnEE
+        DoijRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEBMB0GA1Ud
+        DgQWBBQNii/WwMSR1CIhV2zDj9lvXt8fMzAKBggqhkjOPQQDAgNIADBFAiEAyGwC
+        DxFX+GYMLhyknLrW/BokJsKqhB7z/IWSQtRoda0CIDd8IgqsQBdnbnbTfMou2BL5
+        2XpOQ0bDJvWVjFWvUYhe
+        -----END CERTIFICATE-----
+        
+  peer1.govfmq-devnetlha.svc.cluster.local:
+    url: grpcs://078667561026-eks-prod-001.worldsibu.com:30929
+    eventUrl: grpcs://078667561026-eks-prod-001.worldsibu.com:30899
+    grpcOptions:
+      ssl-target-name-override: peer1.govfmq-devnetlha.svc.cluster.local
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVzCCAf2gAwIBAgIUasJRqGdF3TQjf1mOzb61Z2Nso8UwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzU0MDBa
+        Fw0yNDA5MDQwNzU5MDBaMHExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBmNsaWVudDEi
+        MCAGA1UEAxMZZ292Zm1xLWRldm5ldGxoYS1SQ0FhZG1pbjBZMBMGByqGSM49AgEG
+        CCqGSM49AwEHA0IABKFS3orXxefq4nfw1ox+Qsh65kXAeu3F0uhPu0KRZihdf9uX
+        PqItS9Qxxcm10Gg+AyjfRZdjyrPgHSQv1siHBb+jZjBkMA4GA1UdDwEB/wQEAwIB
+        BjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBRqFkheJMOhlS5v0DwzeWnb
+        lAcCmDAfBgNVHSMEGDAWgBSUTUDZjNazFLaP09Ge1OdZSqV2AzAKBggqhkjOPQQD
+        AgNIADBFAiEAi/D0wKLFuRI26n+ydjN62sR8hpr9QzG4h6eHgdWFzMYCIAefBCHC
+        8tjlzT+a9XUz1jt1utwFXrlIcVJ9azkht4Qb
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICQjCCAemgAwIBAgIUaY+AUVe2LlynLl8AR6sLAP/kFXUwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzUzMDBa
+        Fw0zNDA5MDIwNzUzMDBaMH4xCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEv
+        MC0GA1UEAxMmcmNhLmdvdmZtcS1kZXZuZXRsaGEuc3ZjLmNsdXN0ZXIubG9jYWww
+        WTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATXzNo/4VEqrWE+aYtnxjhLP1lgUGKL
+        p8EvzLYH0p066zQtaOQiRhDqFjhKgaVmWWkVErf0uP8VIyNUhnTpgweto0UwQzAO
+        BgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUlE1A
+        2YzWsxS2j9PRntTnWUqldgMwCgYIKoZIzj0EAwIDRwAwRAIgL0zU3Lvqhu21DwAH
+        Olgoh4YtViQtL6hCGuEEnvRzwyQCIEb4kJqit1IUjasmbTjKOOh8emS2FqEsmnvZ
+        dYk7/QA9
+        -----END CERTIFICATE-----
+        
+
+certificateAuthorities:
+  ica.chwongfxc-devnetpqn.svc.cluster.local:
+    caName: ica.chwongfxc-devnetpqn.svc.cluster.local
+    url: https://078667561026-eks-prod-001.worldsibu.com:30081
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICXTCCAgSgAwIBAgIUBokQChWhd1i3Az9lsPjcC2KIXFswCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMjQwOTA0MDc1NzAwWjB0MQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9y
+        dGggQ2Fyb2xpbmExFDASBgNVBAoTC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZjbGll
+        bnQxJTAjBgNVBAMTHGNod29uZ2Z4Yy1kZXZuZXRwcW4tUkNBYWRtaW4wWTATBgcq
+        hkjOPQIBBggqhkjOPQMBBwNCAAQAk9eeDSdAbSwRRcyRBY2eNG1eeqAkNyiV+vGx
+        trHYfKbx6GDL0zkUO4Dmi95Nih9YepnEXaSNPQjpwCxtAbALo2YwZDAOBgNVHQ8B
+        Af8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUqTPXaOE76ln5
+        QPm2YOKzY+sjVDcwHwYDVR0jBBgwFoAUDYov1sDEkdQiIVdsw4/Zb17fHzMwCgYI
+        KoZIzj0EAwIDRwAwRAIgU38MpNd2j8QyrU+CgiY1rPlzOSsKABg8awiTgCXqM8YC
+        IGV51XiU8MF3E441EyaY+sofM12r7Af0mOtX1/svX9vo
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIUIKmFFE64TSHyc4YA2sB9MHwWBEMwCgYIKoZIzj0EAwIw
+        gYExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UE
+        ChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEyMDAGA1UEAxMpcmNhLmNo
+        d29uZ2Z4Yy1kZXZuZXRwcW4uc3ZjLmNsdXN0ZXIubG9jYWwwHhcNMTkwOTA2MDc1
+        MjAwWhcNMzQwOTAyMDc1MjAwWjCBgTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5v
+        cnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFi
+        cmljMTIwMAYDVQQDEylyY2EuY2h3b25nZnhjLWRldm5ldHBxbi5zdmMuY2x1c3Rl
+        ci5sb2NhbDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNABpEhmfW/X2U0XQib0
+        2Zlc69fP5asaN3My8fnVXnImZ6kF1ftLI55gfkRWIba2jkNJwmjQSwNe9kuLjnEE
+        DoijRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEBMB0GA1Ud
+        DgQWBBQNii/WwMSR1CIhV2zDj9lvXt8fMzAKBggqhkjOPQQDAgNIADBFAiEAyGwC
+        DxFX+GYMLhyknLrW/BokJsKqhB7z/IWSQtRoda0CIDd8IgqsQBdnbnbTfMou2BL5
+        2XpOQ0bDJvWVjFWvUYhe
+        -----END CERTIFICATE-----
+        
+  ica.govfmq-devnetlha.svc.cluster.local:
+    caName: ica.govfmq-devnetlha.svc.cluster.local
+    url: https://078667561026-eks-prod-001.worldsibu.com:31088
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVzCCAf2gAwIBAgIUasJRqGdF3TQjf1mOzb61Z2Nso8UwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzU0MDBa
+        Fw0yNDA5MDQwNzU5MDBaMHExCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBmNsaWVudDEi
+        MCAGA1UEAxMZZ292Zm1xLWRldm5ldGxoYS1SQ0FhZG1pbjBZMBMGByqGSM49AgEG
+        CCqGSM49AwEHA0IABKFS3orXxefq4nfw1ox+Qsh65kXAeu3F0uhPu0KRZihdf9uX
+        PqItS9Qxxcm10Gg+AyjfRZdjyrPgHSQv1siHBb+jZjBkMA4GA1UdDwEB/wQEAwIB
+        BjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBRqFkheJMOhlS5v0DwzeWnb
+        lAcCmDAfBgNVHSMEGDAWgBSUTUDZjNazFLaP09Ge1OdZSqV2AzAKBggqhkjOPQQD
+        AgNIADBFAiEAi/D0wKLFuRI26n+ydjN62sR8hpr9QzG4h6eHgdWFzMYCIAefBCHC
+        8tjlzT+a9XUz1jt1utwFXrlIcVJ9azkht4Qb
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICQjCCAemgAwIBAgIUaY+AUVe2LlynLl8AR6sLAP/kFXUwCgYIKoZIzj0EAwIw
+        fjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK
+        EwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMS8wLQYDVQQDEyZyY2EuZ292
+        Zm1xLWRldm5ldGxoYS5zdmMuY2x1c3Rlci5sb2NhbDAeFw0xOTA5MDYwNzUzMDBa
+        Fw0zNDA5MDIwNzUzMDBaMH4xCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBD
+        YXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzANBgNVBAsTBkZhYnJpYzEv
+        MC0GA1UEAxMmcmNhLmdvdmZtcS1kZXZuZXRsaGEuc3ZjLmNsdXN0ZXIubG9jYWww
+        WTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATXzNo/4VEqrWE+aYtnxjhLP1lgUGKL
+        p8EvzLYH0p066zQtaOQiRhDqFjhKgaVmWWkVErf0uP8VIyNUhnTpgweto0UwQzAO
+        BgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUlE1A
+        2YzWsxS2j9PRntTnWUqldgMwCgYIKoZIzj0EAwIDRwAwRAIgL0zU3Lvqhu21DwAH
+        Olgoh4YtViQtL6hCGuEEnvRzwyQCIEb4kJqit1IUjasmbTjKOOh8emS2FqEsmnvZ
+        dYk7/QA9
+        -----END CERTIFICATE-----
+        
+  

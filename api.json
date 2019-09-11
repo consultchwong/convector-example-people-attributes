@@ -1,0 +1,31 @@
+[
+	    {
+		            "function": "register",
+			            "controller": "ParticipantController"
+				        },
+					    {
+						            "function": "create",
+							            "verb": "post",
+								            "controller": "PersonController"
+									        },
+										    {
+											            "function": "addAttribute",
+												            "verb": "post",
+													            "controller": "PersonController"
+														        },
+															    {
+																            "function": "get",
+																	            "verb": "get",
+																		            "controller": "PersonController"
+																			        },
+																				    {
+																					            "function": "getAll",
+																						            "verb": "get",
+																							            "controller": "PersonController"
+																								        },
+																									    {
+																										            "function": "getByAttribute",
+																											            "verb": "get",
+																												            "controller": "PersonController"
+																													        }
+]
